@@ -1,13 +1,24 @@
 #![allow(non_snake_case, dead_code)]
 
 mod app;
+mod cli;
 mod image_loader;
 mod pdf;
 
+use clap::Parser;
 use eframe::egui;
-use std::path::PathBuf;
 
 fn main() -> eframe::Result {
+    let args = cli::CliArgs::parse();
+
+    if args.should_run_cli() {
+        if let Err(err) = cli::run_cli(&args) {
+            eprintln!("Error: {}", err);
+            std::process::exit(1);
+        }
+        return Ok(());
+    }
+
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_title("Image2SplitPDF — Convert Images to PDF")
@@ -17,15 +28,14 @@ fn main() -> eframe::Result {
         ..Default::default()
     };
 
-    // Check if user passed an image argument on CLI
-    let cli_arg_path = std::env::args().nth(1).map(PathBuf::from);
+    let initial_images = args.images;
 
     eframe::run_native(
         "Image2SplitPDF",
         options,
         Box::new(move |cc| {
             let mut app = app::Image2PdfApp::new(cc);
-            if let Some(path) = cli_arg_path {
+            for path in initial_images {
                 if path.exists() {
                     app.load_image_path(path);
                 }

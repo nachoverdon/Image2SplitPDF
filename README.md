@@ -83,6 +83,60 @@ cargo build --release
 ./target/release/Image2SplitPDF
 ```
 
+---
+
+## 💻 CLI Usage
+
+Image2SplitPDF can be run entirely headlessly from the terminal for fast automation and batch processing, or interactively via GUI.
+
+### Quick Examples
+
+```bash
+# Convert a single image to PDF
+image2splitpdf photo.jpg -o document.pdf
+
+# Convert multiple images into a multi-page PDF
+image2splitpdf page1.jpg page2.png page3.webp -o combined.pdf
+
+# Split a poster across a 2×3 grid of A4 pages
+image2splitpdf poster.png --split --cols 2 --rows 3 -o poster.pdf
+
+# Automatically calculate the optimal page grid for high-res printing (300 DPI)
+image2splitpdf artwork.png --auto-grid -o artwork_split.pdf
+
+# Auto-grid with custom DPI and 10 mm overlap margin
+image2splitpdf banner.png --auto-grid 150 --overlap 10 -o banner_split.pdf
+
+# Custom page size (A3 landscape) with 5 mm margin
+image2splitpdf schematic.png -s A3 -r landscape -m small -o schematic.pdf
+
+# Open the GUI with an image pre-loaded
+image2splitpdf photo.jpg
+```
+
+### CLI Options
+
+| Option | Flag | Description | Default |
+|---|---|---|---|
+| `-o, --output <FILE>` | Output Path | Destination `.pdf` path (triggers CLI mode) | `<input_name>.pdf` |
+| `-c, --cli` | Force CLI | Run headless CLI mode even without `-o` | `false` |
+| `-g, --gui` | Force GUI | Launch GUI even if CLI options are specified | `false` |
+| `-s, --page-size <SIZE>` | Page Size | `A4`, `A3`, `A5`, `Letter`, `Legal`, or `WIDTHxHEIGHT` mm | `a4` |
+| `-r, --orientation <MODE>`| Orientation | `portrait`, `landscape`, or `auto` | `auto` |
+| `--page-rotation <DEG>` | Page Rotation | Page rotation: `0`, `90`, `180`, `270` | `0` |
+| `--image-rotation <DEG>`| Image Rotation | Rotate input image clockwise: `0`, `90`, `180`, `270` | `0` |
+| `-m, --margin <MARGIN>` | Margin | `none`, `small` (5mm), `normal` (10mm), `large` (20mm), or mm | `normal` |
+| `-f, --fit <MODE>` | Fit Mode | `fit`, `fill`, `stretch`, or `original` | `fit` |
+| `--split` | Split Mode | Enable multi-page poster split tiling | `false` |
+| `--cols <N>` | Columns | Grid columns for split mode | `2` |
+| `--rows <N>` | Rows | Grid rows for split mode | `2` |
+| `--auto-grid [<DPI>]` | Auto Grid | Automatically calculate optimal grid pages based on DPI | `300.0` |
+| `--overlap <MM>` | Overlap | Overlap margin in mm between split tiles | `5.0` |
+| `-v, --verbose` | Verbose | Show detailed processing logs | `false` |
+| `-h, --help` | Help | Print help screen and examples | |
+| `-V, --version` | Version | Print version information | |
+
+
 ### Install as an Omarchy / Desktop App (Executable from Launcher)
 
 To install Image2SplitPDF as a desktop app with its icon and desktop launcher:
