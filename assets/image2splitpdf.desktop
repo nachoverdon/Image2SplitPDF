@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Image2SplitPDF
+GenericName=Image to PDF Splitter
+Comment=Split large images across multiple PDF pages for printing or viewing
+Exec=image2splitpdf %f
+Icon=image2splitpdf
+Terminal=false
+Categories=Graphics;2DGraphics;RasterGraphics;
+MimeType=image/png;image/jpeg;image/webp;image/tiff;image/bmp;
+Keywords=image;pdf;split;print;poster;convert;
+StartupNotify=true
+StartupWMClass=Image2SplitPDF

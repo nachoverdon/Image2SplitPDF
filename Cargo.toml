@@ -1,0 +1,11 @@
+[package]
+name = "Image2SplitPDF"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+eframe = "0.36.2"
+image = { version = "0.25.10", features = ["jpeg", "png", "bmp", "webp", "gif", "tiff"] }
+miniz_oxide = "0.9.1"
+pdf-writer = "0.15.0"
+rfd = "0.17.2"
