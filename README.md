@@ -5,6 +5,10 @@ A fast, lightweight, and modern Rust application with a visual interface to conv
 ![Rust](https://img.shields.io/badge/Rust-1.98+-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
+<p align="center">
+  <img src="assets/screenshot.png" alt="Image2SplitPDF in Action" width="100%">
+</p>
+
 ---
 
 ## ✨ Features
